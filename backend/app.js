@@ -1,5 +1,9 @@
 require('dotenv').config();//this loads up the environment variables
+<<<<<<< HEAD
 const PORT = process.env.BACKEND_PORT || 3001;
+=======
+const PORT = process.env.PORT || 1000;
+>>>>>>> b5b54b31 (Set up the project to run in the Replit environment)
 
 //CORE MODULES
 const express = require('express');
@@ -13,6 +17,7 @@ const app = express();
 // Request logging middleware - MUST BE FIRST
 app.use((req, res, next) => {
   console.log(`🌐 Incoming request: ${req.method} ${req.url}`);
+<<<<<<< HEAD
   
   // Only log detailed headers in development
   if (process.env.NODE_ENV !== 'production') {
@@ -31,6 +36,12 @@ app.use((req, res, next) => {
         safeBody[key] = '[REDACTED]';
       }
     });
+=======
+  console.log('📦 Headers:', req.headers);
+  if (req.body && Object.keys(req.body).length > 0) {
+    const safeBody = { ...req.body };
+    if (safeBody.password) safeBody.password = '[REDACTED]';
+>>>>>>> b5b54b31 (Set up the project to run in the Replit environment)
     console.log('📝 Body:', safeBody);
   }
   next();
@@ -40,6 +51,7 @@ app.use((req, res, next) => {
 app.use(express.json());
 app.use(express.urlencoded({ extended: true })); // Added to handle URL-encoded data
 app.use(cookieParser()); // Parse cookies
+<<<<<<< HEAD
 // CORS configuration - secure by default
 const corsOrigin = (origin, callback) => {
   const allowedOrigins = process.env.ALLOWED_ORIGINS ? 
@@ -58,6 +70,10 @@ const corsOrigin = (origin, callback) => {
 
 app.use(cors({
     origin: corsOrigin,
+=======
+app.use(cors({
+    origin: process.env.ALLOWED_ORIGINS ? process.env.ALLOWED_ORIGINS.split(',') : ['http://localhost:3000', 'http://localhost:5000'],  // Specify allowed origins
+>>>>>>> b5b54b31 (Set up the project to run in the Replit environment)
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization']
@@ -70,6 +86,7 @@ console.log('✅ Static files serving enabled from /public');
 //CONNECTION TO MONGODB
 console.log('🔄 Attempting MongoDB connection...');
 const connectDB = require('./config/database');
+<<<<<<< HEAD
 connectDB().then(connected => {
   if (connected) {
     console.log('✅ MongoDB connection initiated successfully');
@@ -80,6 +97,10 @@ connectDB().then(connected => {
   console.error('❌ Database connection error:', err.message);
   console.log('⚠️  Server starting without database connection');
 });
+=======
+connectDB();
+console.log('✅ MongoDB connection initiated');
+>>>>>>> b5b54b31 (Set up the project to run in the Replit environment)
 
 // Monitor MongoDB connection
 mongoose.connection.on('connected', () => {
@@ -142,6 +163,7 @@ app.use('/api/teachers/Notice', TeacherNotice);
 console.log('✅ Teacher routes loaded');
 
 
+<<<<<<< HEAD
 // Health check endpoint
 app.get('/healthz', (req, res) => {
   const health = {
@@ -162,6 +184,8 @@ app.get('/healthz', (req, res) => {
   res.status(statusCode).json(health);
 });
 
+=======
+>>>>>>> b5b54b31 (Set up the project to run in the Replit environment)
 // Default Route - Serve HTML file with logging
 app.get('/', (req, res) => {
   console.log('📄 Serving landing page request');
@@ -187,9 +211,16 @@ app.use((req, res) => {
 });
 
 // Start Server
+<<<<<<< HEAD
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`🚀 Server running on port ${PORT}`);
   console.log(`📍 Local: http://localhost:${PORT}`);
   console.log(`🌐 Public: http://0.0.0.0:${PORT}`);
+=======
+app.listen(PORT, () => {
+  console.log(`🚀 Server running on port ${PORT}`);
+  console.log(`📍 Local: http://localhost:${PORT}`);
+  console.log(`🌐 Public: http://your-server-ip:${PORT}`);
+>>>>>>> b5b54b31 (Set up the project to run in the Replit environment)
   console.log('📊 Ready to accept requests...');
 });
