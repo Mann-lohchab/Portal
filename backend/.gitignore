@@ -1,0 +1,36 @@
+# Node dependencies
+node_modules/
+.pnpm-store/
+
+# Logs
+logs/
+*.log
+pnpm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Build outputs
+dist/
+build/
+out/
+
+# IDE / Editor
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Coverage reports
+coverage/
+
+# Lock files if you don’t want to commit them (optional)
+pnpm-lock.yaml
