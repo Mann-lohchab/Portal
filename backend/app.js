@@ -1,9 +1,5 @@
 require('dotenv').config();//this loads up the environment variables
-<<<<<<< HEAD
-const PORT = process.env.BACKEND_PORT || 3001;
-=======
 const PORT = process.env.PORT || 1000;
->>>>>>> b5b54b31 (Set up the project to run in the Replit environment)
 
 //CORE MODULES
 const express = require('express');
@@ -73,7 +69,6 @@ app.use(cors({
 =======
 app.use(cors({
     origin: process.env.ALLOWED_ORIGINS ? process.env.ALLOWED_ORIGINS.split(',') : ['http://localhost:3000', 'http://localhost:5000'],  // Specify allowed origins
->>>>>>> b5b54b31 (Set up the project to run in the Replit environment)
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization']
@@ -211,16 +206,9 @@ app.use((req, res) => {
 });
 
 // Start Server
-<<<<<<< HEAD
-app.listen(PORT, '0.0.0.0', () => {
-  console.log(`🚀 Server running on port ${PORT}`);
-  console.log(`📍 Local: http://localhost:${PORT}`);
-  console.log(`🌐 Public: http://0.0.0.0:${PORT}`);
-=======
 app.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);
   console.log(`📍 Local: http://localhost:${PORT}`);
   console.log(`🌐 Public: http://your-server-ip:${PORT}`);
->>>>>>> b5b54b31 (Set up the project to run in the Replit environment)
   console.log('📊 Ready to accept requests...');
 });
